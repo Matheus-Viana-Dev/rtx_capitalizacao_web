@@ -42,11 +42,10 @@
                 <span class="nav-toggle-bar"></span>
             </button>
             <nav id="primary-nav" class="site-nav">
-                <a href="#plano" class="nav-link">Plano CAP 500</a>
-                <a href="#como-funciona" class="nav-link">Como Funciona</a>
-                <a href="#diferenciais" class="nav-link">Diferenciais</a>
+                <a href="#checkout-form" class="nav-link">Cadastro</a>
+                <a href="#resumo" class="nav-link">Resumo</a>
                 <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#contato" class="button button-primary">Simule Agora</a>
+                <a href="#checkout-form" class="button button-primary">Concluir agora</a>
             </nav>
         </div>
     </header>
@@ -54,179 +53,343 @@
     <main id="topo">
         <!-- Hero Section -->
         <section class="section-hero">
-            <div class="container hero-grid">
-                <div class="hero-copy">
-                    <h1>RTX SEC: Seu Capital Crescendo com Segurança e Recompensa</h1>
-                    <p class="lead">Invista com rentabilidade real e receba mais por sua pontualidade, diferente da capitalização tradicional.</p>
-                    <div class="hero-cta">
-                        <a href="#plano" class="button button-primary">Conheça o Plano RTX SEC</a>
-                        <a href="#contato" class="button button-outline">Simule Seu Investimento Agora</a>
-                    </div>
-                    <ul class="hero-points">
-                        <li>0,60% ao mês de rentabilidade</li>
-                        <li>Resgate final de R$ 27.883,81</li>
-                        <li>Bônus por pontualidade</li>
-                    </ul>
-                </div>
+            <div class="container hero-grid hero-checkout">
                 <div class="hero-media">
                     <img src="/hero-growth.jpg" alt="Crescimento financeiro com segurança" class="hero-image" loading="lazy">
                 </div>
-            </div>
-        </section>
-
-        <!-- Problema da Capitalização Tradicional -->
-        <section class="section-contrast" id="problema">
-            <div class="container narrow">
-                <h2>Cansado de Títulos de Capitalização que Não Rendem?</h2>
-                <p class="muted">A capitalização tradicional costuma focar no sorteio, não no seu crescimento financeiro.</p>
-                <div class="cards-grid">
-                    <article class="card card-contrast">
-                        <h3>Rendimento baixo ou nulo</h3>
-                        <p>TR a 0% não faz seu dinheiro crescer de verdade.</p>
-                    </article>
-                    <article class="card card-contrast">
-                        <h3>Custos que corroem o capital</h3>
-                        <p>Taxas administrativas e de sorteio diminuem seu saldo.</p>
-                    </article>
-                    <article class="card card-contrast">
-                        <h3>Dinheiro travado</h3>
-                        <p>Resgates antecipados com perdas e pouca flexibilidade.</p>
-                    </article>
-                    <article class="card card-contrast">
-                        <h3>Foco na sorte</h3>
-                        <p>Mais bilhetes, menos patrimônio: sua meta deve ser crescer.</p>
-                    </article>
-                </div>
-                <div class="callout">
-                    <strong>Diferencial RTX SEC:</strong> na RTX SEC, o foco é no seu futuro, não apenas na sorte.
-                </div>
-            </div>
-        </section>
-
-        <!-- Solução: Plano CAP 500 -->
-        <section class="section" id="plano">
-            <div class="container">
-                <div class="section-header">
-                    <h2>RTX SEC: A Evolução do Seu Dinheiro</h2>
-                    <p class="muted">Plano CAP 500: previsibilidade, transparência e recompensa pela disciplina.</p>
-                </div>
-                <div class="plan-grid">
-                    <div class="plan-card">
-                        <ul class="plan-list">
-                            <li><span class="label">Contrato:</span> R$ 24.000,00 em 48× de R$ 500,00</li>
-                            <li><span class="label">Rentabilidade mensal:</span> 0,60% a.m.</li>
-                            <li><span class="label">Resgate final:</span> R$ 27.883,81</li>
-                            <li><span class="label">Bônus por pontualidade:</span> quem paga em dia resgata 100% do valor investido com a rentabilidade prometida</li>
-                            <li><span class="label">Estrutura legal:</span> contrato de Sociedade em Conta de Participação (SCP)</li>
-                        </ul>
-                        <div class="plan-cta">
-                            <a href="#contato" class="button button-primary">Quero simular agora</a>
-                            <a href="#como-funciona" class="button button-outline">Como funciona</a>
+                <div class="hero-copy">
+                    <h1>RTX SEC: Cadastre-se e Conclua seu Plano CAP 500</h1>
+                    <p class="lead">Formulário principal de cadastro e checkout. Escolha seu método de pagamento e finalize agora.</p>
+                    <form class="checkout-form" id="checkout-form" novalidate>
+                        <!-- Etapa 1: Seleção do Plano -->
+                        <div class="form-step active" data-step="1">
+                            <fieldset class="form-section">
+                                <legend>Etapa 1: Escolha seu Plano</legend>
+                                <div class="plan-selection">
+                                    <div class="plan-option">
+                                        <input type="radio" id="plano-cap500" name="plano" value="cap500" required>
+                                        <label for="plano-cap500" class="plan-card-select">
+                                            <h3>Plano CAP 500</h3>
+                                            <ul>
+                                                <li>48 parcelas de R$ 500,00</li>
+                                                <li>Total: R$ 24.000,00</li>
+                                                <li>Rentabilidade: 0,60% ao mês</li>
+                                                <li>Resgate final: R$ 27.883,81</li>
+                                            </ul>
+                                        </label>
+                                    </div>
+                                    <div class="plan-option">
+                                        <input type="radio" id="plano-gn" name="plano" value="gn" required>
+                                        <label for="plano-gn" class="plan-card-select">
+                                            <h3>Plano GN</h3>
+                                            <ul>
+                                                <li>Comissionamento interno</li>
+                                                <li>1ª Parcela: 0.1</li>
+                                                <li>2ª Parcela: 0.1</li>
+                                                <li>Residual: 0.1</li>
+                                                <li>46 parcelas: 46.0</li>
+                                                <li>Total por plano: 2400.0</li>
+                                            </ul>
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
                         </div>
+
+                        <!-- Etapa 2: Dados Pessoais -->
+                        <div class="form-step hidden" data-step="2">
+                            <fieldset class="form-section">
+                                <legend>Etapa 2: Dados Pessoais</legend>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="nome">Nome Completo *</label>
+                                        <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cpf">CPF *</label>
+                                        <input type="text" id="cpf" name="cpf" inputmode="numeric" placeholder="000.000.000-00" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nascimento">Data de Nascimento *</label>
+                                        <input type="date" id="nascimento" name="nascimento" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nacionalidade">Nacionalidade *</label>
+                                        <input type="text" id="nacionalidade" name="nacionalidade" placeholder="Brasileira" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="profissao">Profissão *</label>
+                                        <input type="text" id="profissao" name="profissao" placeholder="Sua profissão" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="estado_civil">Estado Civil *</label>
+                                        <select id="estado_civil" name="estado_civil" required>
+                                            <option value="">Selecione</option>
+                                            <option value="solteiro">Solteiro(a)</option>
+                                            <option value="casado">Casado(a)</option>
+                                            <option value="divorciado">Divorciado(a)</option>
+                                            <option value="viuvo">Viúvo(a)</option>
+                                            <option value="uniao_estavel">União Estável</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tipo_doc">Tipo de Documento *</label>
+                                        <select id="tipo_doc" name="tipo_doc" required>
+                                            <option value="">Selecione</option>
+                                            <option value="rg">RG</option>
+                                            <option value="cnh">CNH</option>
+                                            <option value="passaporte">Passaporte</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="numero_doc">Número do Documento *</label>
+                                        <input type="text" id="numero_doc" name="numero_doc" placeholder="Número do documento" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="orgao_emissor">Órgão Emissor *</label>
+                                        <input type="text" id="orgao_emissor" name="orgao_emissor" placeholder="SSP/SP" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="data_emissao">Data de Emissão *</label>
+                                        <input type="date" id="data_emissao" name="data_emissao" required>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="form-section">
+                                <legend>Endereço Completo</legend>
+                                <div class="form-grid">
+                                    <div class="form-group full-width">
+                                        <label for="endereco">Endereço *</label>
+                                        <input type="text" id="endereco" name="endereco" placeholder="Rua, número, complemento" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bairro">Bairro *</label>
+                                        <input type="text" id="bairro" name="bairro" placeholder="Bairro" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cidade">Cidade *</label>
+                                        <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="estado">Estado *</label>
+                                        <select id="estado" name="estado" required>
+                                            <option value="">Selecione</option>
+                                            <option value="AC">Acre</option>
+                                            <option value="AL">Alagoas</option>
+                                            <option value="AP">Amapá</option>
+                                            <option value="AM">Amazonas</option>
+                                            <option value="BA">Bahia</option>
+                                            <option value="CE">Ceará</option>
+                                            <option value="DF">Distrito Federal</option>
+                                            <option value="ES">Espírito Santo</option>
+                                            <option value="GO">Goiás</option>
+                                            <option value="MA">Maranhão</option>
+                                            <option value="MT">Mato Grosso</option>
+                                            <option value="MS">Mato Grosso do Sul</option>
+                                            <option value="MG">Minas Gerais</option>
+                                            <option value="PA">Pará</option>
+                                            <option value="PB">Paraíba</option>
+                                            <option value="PR">Paraná</option>
+                                            <option value="PE">Pernambuco</option>
+                                            <option value="PI">Piauí</option>
+                                            <option value="RJ">Rio de Janeiro</option>
+                                            <option value="RN">Rio Grande do Norte</option>
+                                            <option value="RS">Rio Grande do Sul</option>
+                                            <option value="RO">Rondônia</option>
+                                            <option value="RR">Roraima</option>
+                                            <option value="SC">Santa Catarina</option>
+                                            <option value="SP">São Paulo</option>
+                                            <option value="SE">Sergipe</option>
+                                            <option value="TO">Tocantins</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cep">CEP *</label>
+                                        <input type="text" id="cep" name="cep" inputmode="numeric" placeholder="00000-000" required>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="form-section">
+                                <legend>Contato</legend>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="telefone">Telefone *</label>
+                                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">E-mail *</label>
+                                        <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <!-- Etapa 3: Dados Bancários e Pagamento -->
+                        <div class="form-step hidden" data-step="3">
+                            <fieldset class="form-section">
+                                <legend>Etapa 3: Dados Bancários e Pagamento</legend>
+                                
+                                <div class="form-group">
+                                    <label for="forma_pagamento">Forma de Pagamento *</label>
+                                    <select id="forma_pagamento" name="forma_pagamento" required>
+                                        <option value="">Selecione</option>
+                                        <option value="debito_conta">Débito em Conta</option>
+                                        <option value="boleto">Boleto Bancário</option>
+                                        <option value="pix">PIX</option>
+                                        <option value="cartao">Cartão de Crédito</option>
+                                    </select>
+                                </div>
+
+                                <div id="dados-bancarios" class="hidden">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="banco">Banco *</label>
+                                            <select id="banco" name="banco">
+                                                <option value="">Selecione</option>
+                                                <option value="001">Banco do Brasil</option>
+                                                <option value="104">Caixa Econômica Federal</option>
+                                                <option value="341">Itaú</option>
+                                                <option value="033">Santander</option>
+                                                <option value="237">Bradesco</option>
+                                                <option value="260">Nu Pagamentos</option>
+                                                <option value="336">Banco C6</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="agencia">Agência *</label>
+                                            <input type="text" id="agencia" name="agencia" placeholder="0000" inputmode="numeric">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="conta">Conta *</label>
+                                            <input type="text" id="conta" name="conta" placeholder="00000-0" inputmode="numeric">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tipo_conta">Tipo de Conta *</label>
+                                            <select id="tipo_conta" name="tipo_conta">
+                                                <option value="">Selecione</option>
+                                                <option value="corrente">Conta Corrente</option>
+                                                <option value="poupanca">Conta Poupança</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="dados-cartao" class="hidden">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="cc-number">Número do cartão *</label>
+                                            <input type="text" id="cc-number" name="ccNumber" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cc-name">Nome impresso no cartão *</label>
+                                            <input type="text" id="cc-name" name="ccName" autocomplete="cc-name" placeholder="Como no cartão">
+                                        </div>
+                                        <div class="form-row-3">
+                                            <div class="form-group">
+                                                <label for="cc-exp">Validade (MM/AA) *</label>
+                                                <input type="text" id="cc-exp" name="ccExp" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/AA">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cc-cvv">CVV *</label>
+                                                <input type="password" id="cc-cvv" name="ccCvv" inputmode="numeric" autocomplete="cc-csc" placeholder="***">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cc-parc">Parcelas *</label>
+                                                <select id="cc-parc" name="ccParc">
+                                                    <option value="1">1x de R$ 500,00</option>
+                                                    <option value="2">2x de R$ 250,00</option>
+                                                    <option value="5">5x de R$ 100,00</option>
+                                                    <option value="10">10x de R$ 50,00</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="form-section">
+                                <legend>Beneficiário (Opcional)</legend>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="beneficiario_nome">Nome do Beneficiário</label>
+                                        <input type="text" id="beneficiario_nome" name="beneficiario_nome" placeholder="Nome completo do beneficiário">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="beneficiario_cpf">CPF do Beneficiário</label>
+                                        <input type="text" id="beneficiario_cpf" name="beneficiario_cpf" inputmode="numeric" placeholder="000.000.000-00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="beneficiario_parentesco">Grau de Parentesco</label>
+                                        <select id="beneficiario_parentesco" name="beneficiario_parentesco">
+                                            <option value="">Selecione</option>
+                                            <option value="conjuge">Cônjuge</option>
+                                            <option value="filho">Filho(a)</option>
+                                            <option value="pai">Pai</option>
+                                            <option value="mae">Mãe</option>
+                                            <option value="irmao">Irmão(ã)</option>
+                                            <option value="outro">Outro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="form-section">
+                                <legend>Declarações</legend>
+                                <div class="form-group">
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="ppe" name="ppe">
+                                        <span>Declaro que NÃO sou Pessoa Politicamente Exposta (PPE)</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="residencia_fiscal" name="residencia_fiscal">
+                                        <span>Declaro que sou residente fiscal no Brasil</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="termos" required>
+                                        <span>Concordo com os termos e condições e política de privacidade *</span>
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <!-- Navegação entre etapas -->
+                        <div class="form-navigation">
+                            <button type="button" id="prev-step" class="button button-outline hidden">Anterior</button>
+                            <button type="button" id="next-step" class="button button-primary">Próximo</button>
+                            <button type="submit" id="submit-form" class="button button-primary hidden">Concluir Cadastro</button>
+                        </div>
+
+                        <!-- Placeholder Safe2Pay: inclua seu script/chaves conforme documentação oficial -->
+                        <!-- <script src="https://.../safe2pay.js"></script> -->
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resumo compacto -->
+        <section class="section" id="resumo">
+            <div class="container narrow">
+                <div class="section-header">
+                    <h2>Resumo do Plano CAP 500</h2>
+                    <p class="muted">Direto ao ponto: previsibilidade e recompensa pela pontualidade.</p>
+                </div>
+                <div class="plan-card">
+                    <ul class="plan-list">
+                        <li><span class="label">Aporte:</span> 48× de R$ 500,00 (Total R$ 24.000,00)</li>
+                        <li><span class="label">Rentabilidade:</span> 0,60% ao mês</li>
+                        <li><span class="label">Resgate final:</span> R$ 27.883,81</li>
+                        <li><span class="label">Bônus:</span> pagou em dia, recebe 100% com a rentabilidade</li>
+                    </ul>
+                    <div class="plan-cta">
+                        <a href="#checkout-form" class="button button-primary">Começar agora</a>
+                        <a href="#faq" class="button button-outline">Tirar dúvidas</a>
                     </div>
-                    <aside class="plan-aside">
-                        <p>Com 48 parcelas fixas, você investe com previsibilidade e sabe exatamente quanto irá receber ao final do contrato.</p>
-                        <p class="small muted">Transparência total: sem foco em sorteio, e sim no crescimento do seu patrimônio.</p>
-                    </aside>
-                </div>
-            </div>
-        </section>
-
-        <!-- Como Funciona -->
-        <section class="section alt" id="como-funciona">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Como Funciona</h2>
-                    <p class="muted">Um passo a passo simples para atingir seu objetivo financeiro.</p>
-                </div>
-                <ol class="steps">
-                    <li>
-                        <div class="step">
-                            <div class="step-num">1</div>
-                            <div class="step-body">
-                                <h3>Aporte</h3>
-                                <p>Contrate seu plano com parcelas fixas de R$ 500,00.</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="step">
-                            <div class="step-num">2</div>
-                            <div class="step-body">
-                                <h3>Crescimento</h3>
-                                <p>Seu capital rende 0,60% ao mês.</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="step">
-                            <div class="step-num">3</div>
-                            <div class="step-body">
-                                <h3>Recompensa</h3>
-                                <p>Pague em dia e garanta seu resgate final com bônus.</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="step">
-                            <div class="step-num">4</div>
-                            <div class="step-body">
-                                <h3>Resgate</h3>
-                                <p>Receba R$ 27.883,81 ao final do contrato.</p>
-                            </div>
-                        </div>
-                    </li>
-                </ol>
-            </div>
-        </section>
-
-        <!-- Diferenciais -->
-        <section class="section" id="diferenciais">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Diferenciais da RTX SEC</h2>
-                </div>
-                <div class="cards-grid">
-                    <article class="card">
-                        <div class="icon"><i class="fa-solid fa-chart-line"></i></div>
-                        <h3>Rentabilidade garantida</h3>
-                        <p>Diferente da TR, nosso rendimento é fixo e claro.</p>
-                    </article>
-                    <article class="card">
-                        <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-                        <h3>Transparência</h3>
-                        <p>Você sabe exatamente quanto vai receber.</p>
-                    </article>
-                    <article class="card">
-                        <div class="icon"><i class="fa-regular fa-clock"></i></div>
-                        <h3>Recompensa pela disciplina</h3>
-                        <p>Valorizamos sua pontualidade com um resgate superior.</p>
-                    </article>
-                    <article class="card">
-                        <div class="icon"><i class="fa-solid fa-piggy-bank"></i></div>
-                        <h3>Foco no seu patrimônio</h3>
-                        <p>Nosso objetivo é o crescimento do seu dinheiro, não um sorteio.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Depoimentos -->
-        <section class="section alt" id="depoimentos">
-            <div class="container narrow">
-                <div class="section-header">
-                    <h2>O que nossos clientes dizem</h2>
-                    <p class="muted">Prova social para reforçar confiança.</p>
-                </div>
-                <div class="testimonials">
-                    <blockquote class="testimonial">
-                        <p>“Escolhi a RTX SEC pela transparência. Sei exatamente quanto vou resgatar.”</p>
-                        <footer>— Maria S.</footer>
-                    </blockquote>
-                    <blockquote class="testimonial">
-                        <p>“A disciplina foi recompensada. Excelente alternativa à capitalização tradicional.”</p>
-                        <footer>— João P.</footer>
-                    </blockquote>
                 </div>
             </div>
         </section>
@@ -254,58 +417,73 @@
             </div>
         </section>
 
-        <!-- CTA Final + Formulário -->
-        <section class="section-cta" id="contato">
-            <div class="container cta-grid">
-                <div class="cta-copy">
-                    <h2>Não perca mais tempo com investimentos que não rendem.</h2>
-                    <p class="lead">Invista na RTX SEC e simule seu futuro financeiro agora.</p>
-                    <ul class="hero-points">
-                        <li>Plano CAP 500: 48× de R$ 500</li>
-                        <li>Resgate final: R$ 27.883,81</li>
-                        <li>0,60% ao mês</li>
-                    </ul>
-                </div>
-                <form class="contact-form" aria-labelledby="form-title" novalidate>
-                    <h3 id="form-title">Simule e Fale com a RTX SEC</h3>
-                    <div class="form-group">
-                        <label for="nome">Nome</label>
-                        <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="mensagem">Mensagem (Opcional)</label>
-                        <textarea id="mensagem" name="mensagem" rows="3" placeholder="Conte-nos seu objetivo"></textarea>
-                    </div>
-                    <button type="submit" class="button button-primary">Quero simular</button>
-                    <p class="form-footnote small muted">Ao enviar, você concorda com nossa política de privacidade.</p>
-                </form>
-            </div>
-        </section>
+        <!-- Removido CTA final para manter a página sucinta -->
     </main>
 
     <footer class="site-footer">
-        <div class="container footer-grid">
-            <div>
-                <a href="#topo" class="brand">
-                    <img src="/logo-rtx-sec.svg" alt="Logo RTX SEC" class="brand-logo" loading="lazy">
-                    <span class="brand-name">RTX SEC</span>
-                </a>
-                <p class="small muted">© <span id="year"></span> RTX SEC. Todos os direitos reservados.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#topo" class="brand">
+                        <img src="/logo-rtx-sec.svg" alt="Logo RTX SEC" class="brand-logo" loading="lazy">
+                        <span class="brand-name">RTX SEC</span>
+                    </a>
+                    <p class="footer-desc">Seu capital crescendo com segurança e recompensa. Investimento transparente e rentável.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="LinkedIn" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" aria-label="WhatsApp" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Produto</h4>
+                        <ul>
+                            <li><a href="#resumo">Plano CAP 500</a></li>
+                            <li><a href="#faq">Como Funciona</a></li>
+                            <li><a href="#checkout-form">Simular Investimento</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Suporte</h4>
+                        <ul>
+                            <li><a href="#faq">Perguntas Frequentes</a></li>
+                            <li><a href="mailto:suporte@rtx-sec.com">suporte@rtx-sec.com</a></li>
+                            <li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="/termos">Termos de Uso</a></li>
+                            <li><a href="/privacidade">Política de Privacidade</a></li>
+                            <li><a href="/regulamento">Regulamento</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="footer-links">
-                <a href="#plano">Plano</a>
-                <a href="#como-funciona">Como Funciona</a>
-                <a href="#diferenciais">Diferenciais</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contato">Contato</a>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p class="copyright">© <span id="year"></span> RTX SEC. Todos os direitos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <span>CNPJ: 00.000.000/0001-00</span>
+                        <span>•</span>
+                        <span>Registro CVM: 00000-0</span>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
