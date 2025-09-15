@@ -17,6 +17,30 @@
     }
   }
 
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Scroll behavior for header
+  window.addEventListener('scroll', function() {
+    const header = document.querySelector('.site-header');
+    if (window.scrollY > 100) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
   // Form validation + fake submit
   const contactForm = document.querySelector('.contact-form');
   if (contactForm) {
@@ -38,32 +62,57 @@
     });
   }
 
-  // Checkout form behavior
-  const checkout = document.getElementById('checkout-form');
-  if (checkout) {
+  // RTX Form behavior
+  const rtxForm = document.getElementById('rtxForm');
+  if (rtxForm) {
     let currentStep = 1;
-    const totalSteps = 3;
-    const steps = checkout.querySelectorAll('.form-step');
-    const prevBtn = document.getElementById('prev-step');
-    const nextBtn = document.getElementById('next-step');
-    const submitBtn = document.getElementById('submit-form');
+    const totalSteps = 5;
+    const steps = rtxForm.querySelectorAll('.form-step');
+    const progressSteps = document.querySelectorAll('.progress-step');
+    const progressLine = document.getElementById('progressLine');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
 
     // Navegação entre etapas
     function showStep(step) {
+      // Atualizar steps do formulário
       steps.forEach(function(s) {
         s.classList.toggle('active', parseInt(s.getAttribute('data-step')) === step);
-        s.classList.toggle('hidden', parseInt(s.getAttribute('data-step')) !== step);
       });
       
+      // Atualizar indicador de progresso
+      progressSteps.forEach(function(ps, index) {
+        const stepNumber = ps.querySelector('.step-number');
+        const stepTitle = ps.querySelector('.step-title');
+        
+        if (index + 1 <= step) {
+          stepNumber.classList.add('active');
+          stepTitle.classList.add('active');
+        } else {
+          stepNumber.classList.remove('active');
+          stepTitle.classList.remove('active');
+        }
+      });
+      
+      // Atualizar botões de navegação
       prevBtn.classList.toggle('hidden', step === 1);
       nextBtn.classList.toggle('hidden', step === totalSteps);
       submitBtn.classList.toggle('hidden', step !== totalSteps);
+      
+      // Atualizar linha de progresso
+      if (progressLine) {
+        const progress = ((step - 1) / (totalSteps - 1)) * 100;
+        progressLine.style.width = progress + '%';
+        progressLine.style.background = progress > 0 ? 'linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%)' : '#e2e8f0';
+      }
     }
 
     nextBtn.addEventListener('click', function() {
       if (validateCurrentStep()) {
         currentStep++;
         showStep(currentStep);
+        updateSummary();
       }
     });
 
@@ -107,10 +156,43 @@
       return isValid;
     }
 
+    // Atualizar resumo
+    function updateSummary() {
+      const fd = new FormData(rtxForm);
+      const plano = fd.get('plano');
+      const nome = fd.get('nome');
+      const email = fd.get('email');
+      const formaPagamento = fd.get('formaPagamento');
+      
+      if (document.getElementById('summaryPlan')) {
+        document.getElementById('summaryPlan').textContent = plano === 'cap500' ? 'Plano CAP 500' : 'Plano GN';
+      }
+      if (document.getElementById('summaryName')) {
+        document.getElementById('summaryName').textContent = nome || '-';
+      }
+      if (document.getElementById('summaryEmail')) {
+        document.getElementById('summaryEmail').textContent = email || '-';
+      }
+      
+      let paymentText = '-';
+      if (formaPagamento) {
+        const paymentMap = {
+          'debito_conta': 'Débito em Conta',
+          'boleto': 'Boleto Bancário',
+          'pix': 'PIX',
+          'cartao': 'Cartão de Crédito'
+        };
+        paymentText = paymentMap[formaPagamento] || formaPagamento;
+      }
+      if (document.getElementById('summaryPayment')) {
+        document.getElementById('summaryPayment').textContent = paymentText;
+      }
+    }
+
     // Controle de campos condicionais
-    const formaPagamento = document.getElementById('forma_pagamento');
-    const dadosBancarios = document.getElementById('dados-bancarios');
-    const dadosCartao = document.getElementById('dados-cartao');
+    const formaPagamento = document.getElementById('formaPagamento');
+    const dadosBancarios = document.getElementById('dadosBancarios');
+    const dadosCartao = document.getElementById('dadosCartao');
 
     if (formaPagamento) {
       formaPagamento.addEventListener('change', function() {
@@ -122,23 +204,25 @@
         } else if (this.value === 'cartao') {
           dadosCartao.classList.remove('hidden');
         }
+        
+        updateSummary();
       });
     }
 
-    checkout.addEventListener('submit', function(e) {
+    rtxForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
       if (!validateCurrentStep()) {
         return;
       }
 
-      const fd = new FormData(checkout);
+      const fd = new FormData(rtxForm);
       const plano = fd.get('plano');
       const nome = String(fd.get('nome') || '').trim();
       const email = String(fd.get('email') || '').trim();
       const telefone = String(fd.get('telefone') || '').trim();
       const cpf = String(fd.get('cpf') || '').replace(/\D/g, '');
-      const termos = checkout.querySelector('#termos');
+      const termos = rtxForm.querySelector('#termos');
       
       if (!termos || !termos.checked) {
         alert('Você precisa aceitar os termos e condições.');
@@ -159,6 +243,9 @@
       
       alert(`Cadastro recebido para o ${plano === 'cap500' ? 'Plano CAP 500' : 'Plano GN'}! Redirecionando para pagamento (Safe2Pay)...`);
     });
+
+    // Inicializar
+    showStep(currentStep);
   }
 
   function validateCPF(cpf) {
