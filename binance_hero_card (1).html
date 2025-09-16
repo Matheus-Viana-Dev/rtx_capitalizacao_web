@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico Binance Crescente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0B0E11 0%, #1A1F26 50%, #0F1419 100%);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Container principal */
+        .chart-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(240, 185, 11, 0.03) 0%, transparent 70%);
+        }
+
+        /* Grid principal da Binance */
+        .trading-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(43, 57, 64, 0.4) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(43, 57, 64, 0.4) 1px, transparent 1px);
+            background-size: 25px 25px;
+            opacity: 0.6;
+            animation: grid-pulse 4s ease-in-out infinite;
+        }
+
+        /* Linhas de preço horizontais */
+        .price-levels {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .price-line {
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(132, 142, 156, 0.3) 20%, 
+                rgba(132, 142, 156, 0.5) 50%, 
+                rgba(132, 142, 156, 0.3) 80%, 
+                transparent 100%);
+            left: 0;
+        }
+
+        .price-line:nth-child(1) { top: 8%; }
+        .price-line:nth-child(2) { top: 18%; }
+        .price-line:nth-child(3) { top: 28%; }
+        .price-line:nth-child(4) { top: 38%; }
+        .price-line:nth-child(5) { top: 48%; background: linear-gradient(90deg, transparent 0%, rgba(240, 185, 11, 0.4) 20%, rgba(240, 185, 11, 0.6) 50%, rgba(240, 185, 11, 0.4) 80%, transparent 100%); }
+        .price-line:nth-child(6) { top: 58%; }
+        .price-line:nth-child(7) { top: 68%; }
+        .price-line:nth-child(8) { top: 78%; }
+        .price-line:nth-child(9) { top: 88%; }
+
+        /* Candlesticks container melhorado */
+        .candlesticks-area {
+            position: absolute;
+            bottom: 80px;
+            left: 3%;
+            right: 3%;
+            height: 400px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            z-index: 5;
+            overflow: hidden;
+        }
+
+        .candle {
+            position: relative;
+            width: 8px;
+            margin: 0 2px;
+            transform-origin: bottom;
+            animation: candle-appear 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+            filter: drop-shadow(0 0 3px rgba(14, 203, 129, 0.3));
+        }
+
+        .candle-body {
+            position: relative;
+            width: 100%;
+            border-radius: 2px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .candle-wick-top, .candle-wick-bottom {
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            transform: translateX(-50%);
+            transition: all 0.4s ease;
+            border-radius: 1px;
+        }
+
+        .candle-wick-top {
+            bottom: 100%;
+        }
+
+        .candle-wick-bottom {
+            top: 100%;
+        }
+
+        /* Candlesticks de alta (verdes) */
+        .candle.bullish .candle-body {
+            background: linear-gradient(180deg, #0ECB81 0%, #0BA863 100%);
+            border: 1px solid #0ECB81;
+            box-shadow: 
+                0 0 15px rgba(14, 203, 129, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .candle.bullish .candle-wick-top,
+        .candle.bullish .candle-wick-bottom {
+            background: linear-gradient(180deg, #0ECB81, #0BA863);
+            box-shadow: 0 0 8px rgba(14, 203, 129, 0.5);
+        }
+
+        /* Candlesticks de baixa (vermelhos) */
+        .candle.bearish .candle-body {
+            background: linear-gradient(180deg, #F6465D 0%, #D73E56 100%);
+            border: 1px solid #F6465D;
+            box-shadow: 
+                0 0 12px rgba(246, 70, 93, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .candle.bearish .candle-wick-top,
+        .candle.bearish .candle-wick-bottom {
+            background: linear-gradient(180deg, #F6465D, #D73E56);
+        }
+
+        /* Linha de tendência de alta */
+        .bullish-trend {
+            position: absolute;
+            bottom: 80px;
+            left: 3%;
+            right: 3%;
+            height: 400px;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .trend-line {
+            position: absolute;
+            bottom: 15%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, 
+                rgba(14, 203, 129, 0) 0%, 
+                rgba(14, 203, 129, 0.6) 30%, 
+                rgba(14, 203, 129, 0.8) 70%, 
+                rgba(14, 203, 129, 0.4) 100%);
+            transform: rotate(12deg);
+            transform-origin: left bottom;
+            border-radius: 2px;
+            animation: trend-flow 3s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(14, 203, 129, 0.4);
+        }
+
+        /* Volume bars melhorado */
+        .volume-area {
+            position: absolute;
+            bottom: 10px;
+            left: 3%;
+            right: 3%;
+            height: 60px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            z-index: 3;
+            opacity: 0.7;
+        }
+
+        .volume-bar {
+            width: 10px;
+            margin: 0 2px;
+            border-radius: 2px 2px 0 0;
+            transition: all 0.3s ease;
+            animation: volume-grow 0.8s ease-out forwards;
+            transform: scaleY(0);
+        }
+
+        .volume-bar:hover {
+            opacity: 1;
+            transform: scaleY(1.1);
+        }
+
+        /* Preços flutuantes melhorados */
+        .floating-data {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 6;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .price-float {
+            position: absolute;
+            font-family: 'SF Mono', 'JetBrains Mono', monospace;
+            font-weight: 700;
+            opacity: 0.8;
+            animation: float-up 12s linear infinite;
+            text-shadow: 0 0 10px currentColor;
+            padding: 4px 8px;
+            border-radius: 4px;
+            backdrop-filter: blur(5px);
+        }
+
+        .price-float.green { 
+            color: #0ECB81; 
+            background: rgba(14, 203, 129, 0.1);
+            border: 1px solid rgba(14, 203, 129, 0.3);
+        }
+        .price-float.red { 
+            color: #F6465D; 
+            background: rgba(246, 70, 93, 0.1);
+            border: 1px solid rgba(246, 70, 93, 0.3);
+        }
+        .price-float.yellow { 
+            color: #F0B90B; 
+            background: rgba(240, 185, 11, 0.1);
+            border: 1px solid rgba(240, 185, 11, 0.3);
+        }
+        .price-float.white { 
+            color: #EAECEF; 
+            background: rgba(234, 236, 239, 0.1);
+            border: 1px solid rgba(234, 236, 239, 0.3);
+        }
+
+        /* Labels de preço lateral */
+        .price-sidebar {
+            position: absolute;
+            right: 15px;
+            top: 0;
+            height: 100%;
+            z-index: 7;
+            pointer-events: none;
+        }
+
+        .price-tag {
+            position: absolute;
+            font-family: 'SF Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            color: #848E9C;
+            background: rgba(24, 26, 32, 0.9);
+            padding: 4px 8px;
+            border-radius: 4px;
+            right: 0;
+            transform: translateY(-50%);
+            border: 1px solid rgba(132, 142, 156, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .price-tag.current {
+            color: #F0B90B;
+            background: rgba(240, 185, 11, 0.15);
+            border-color: #F0B90B;
+            box-shadow: 0 0 15px rgba(240, 185, 11, 0.3);
+            font-weight: 700;
+        }
+
+        /* Linha de preço atual */
+        .current-price {
+            position: absolute;
+            width: calc(100% - 30px);
+            height: 2px;
+            background: linear-gradient(90deg, 
+                rgba(240, 185, 11, 0.8) 0%, 
+                #F0B90B 50%, 
+                rgba(240, 185, 11, 0.8) 100%);
+            left: 0;
+            top: 48%;
+            z-index: 6;
+            border-radius: 1px;
+            animation: price-pulse 2.5s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(240, 185, 11, 0.5);
+        }
+
+        .current-price::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: -4px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid #F0B90B;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            filter: drop-shadow(0 0 5px rgba(240, 185, 11, 0.6));
+        }
+
+        /* Ticker de mercado superior */
+        .market-header {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: rgba(24, 26, 32, 0.95);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-family: 'SF Mono', monospace;
+            color: #EAECEF;
+            z-index: 10;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(43, 57, 64, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .ticker-symbol {
+            font-size: 14px;
+            font-weight: 700;
+            margin-right: 15px;
+            color: #F0B90B;
+        }
+
+        .ticker-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0ECB81;
+            margin-right: 12px;
+        }
+
+        .ticker-change {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0ECB81;
+            padding: 3px 8px;
+            background: rgba(14, 203, 129, 0.15);
+            border-radius: 4px;
+        }
+
+        /* Partículas de fundo */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(240, 185, 11, 0.3);
+            border-radius: 50%;
+            animation: particle-float 15s linear infinite;
+        }
+
+        /* Animações */
+        @keyframes grid-pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes candle-appear {
+            0% {
+                transform: scaleY(0) rotateX(90deg);
+                opacity: 0;
+            }
+            60% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: scaleY(1) rotateX(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes volume-grow {
+            0% {
+                transform: scaleY(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes trend-flow {
+            0%, 100% {
+                opacity: 0.6;
+                transform: rotate(12deg) scaleX(1);
+            }
+            50% {
+                opacity: 1;
+                transform: rotate(12deg) scaleX(1.05);
+            }
+        }
+
+        @keyframes float-up {
+            0% { 
+                transform: translate(-20px, 100vh) rotate(-5deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.3; }
+            100% { 
+                transform: translate(20px, -100px) rotate(5deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes price-pulse {
+            0%, 100% { 
+                opacity: 0.8; 
+                transform: scaleY(1);
+            }
+            50% { 
+                opacity: 1; 
+                transform: scaleY(1.5);
+                box-shadow: 0 0 30px rgba(240, 185, 11, 0.8);
+            }
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translate(0, 100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 0.5; }
+            100% {
+                transform: translate(100px, -100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .candlesticks-area {
+                left: 2%;
+                right: 2%;
+                height: 300px;
+            }
+            
+            .market-header {
+                top: 15px;
+                left: 15px;
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            
+            .price-tag {
+                font-size: 10px;
+                padding: 3px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Container principal -->
+    <div class="chart-container">
+        <!-- Partículas de fundo -->
+        <div class="particles" id="particles"></div>
+        
+        <!-- Grid de trading -->
+        <div class="trading-grid"></div>
+        
+        <!-- Linhas de preço -->
+        <div class="price-levels">
+            <div class="price-line"></div>
+            <div class="price-line"></div>
+            <div class="price-line"></div>
+            <div class="price-line"></div>
+            <div class="price-line"></div>
+            <div class="price-line"></div>
+            <div class="price-line"></div>
+            <div class="price-line"></div>
+            <div class="price-line"></div>
+        </div>
+
+        <!-- Tendência de alta -->
+        <div class="bullish-trend">
+            <div class="trend-line"></div>
+        </div>
+
+        <!-- Linha de preço atual -->
+        <div class="current-price"></div>
+
+        <!-- Labels de preço -->
+        <div class="price-sidebar" id="price-sidebar"></div>
+
+        <!-- Área de candlesticks -->
+        <div class="candlesticks-area" id="candlesticks"></div>
+
+        <!-- Área de volume -->
+        <div class="volume-area" id="volume"></div>
+
+        <!-- Preços flutuantes -->
+        <div class="floating-data" id="floating-data"></div>
+    </div>
+
+    <!-- Ticker de mercado -->
+    <div class="market-header">
+        <span class="ticker-symbol">BTC/USDT</span>
+        <span class="ticker-price" id="price-display">$67,428.50</span>
+        <span class="ticker-change" id="change-display">+5.47%</span>
+    </div>
+
+    <script>
+        // Estado do mercado
+        let marketState = {
+            currentPrice: 67428.50,
+            priceChange: 5.47,
+            candleIndex: 0,
+            basePrice: 65000,
+            trend: 'bullish'
+        };
+
+        // Gerar dados de candlestick com tendência de alta
+        function generateBullishCandle(index) {
+            const isBullish = Math.random() > 0.15; // 85% de chance de alta
+            
+            // Preço base com tendência crescente
+            const priceBase = marketState.basePrice + (index * 30) + 
+                             Math.sin(index * 0.05) * 400 + 
+                             Math.random() * 200;
+            
+            const open = priceBase + (Math.random() - 0.5) * 150;
+            let close;
+            
+            if (isBullish) {
+                close = open + Math.random() * 200 + 50; // Vela verde
+            } else {
+                close = open - Math.random() * 100 - 20; // Vela vermelha menor
+            }
+            
+            const high = Math.max(open, close) + Math.random() * 120 + 30;
+            const low = Math.min(open, close) - Math.random() * 80 - 15;
+            
+            return {
+                open, close, high, low, isBullish,
+                volume: Math.random() * 800 + 300,
+                strength: isBullish ? Math.random() * 0.8 + 0.4 : Math.random() * 0.4 + 0.1
+            };
+        }
+
+        // Criar candlesticks animados
+        function createAnimatedCandles() {
+            const container = document.getElementById('candlesticks');
+            
+            // Mover velas existentes para a esquerda
+            const existingCandles = Array.from(container.children);
+            existingCandles.forEach((candle, index) => {
+                const currentTransform = candle.style.transform || '';
+                const currentX = parseFloat(currentTransform.match(/translateX\(([^)]+)\)/)?.[1] || 0);
+                candle.style.transform = `translateX(${currentX - 12}px)`;
+                candle.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                // Remover velas que saíram da tela
+                if (currentX < -50 && existingCandles.length > 80) {
+                    setTimeout(() => {
+                        if (candle.parentNode) candle.remove();
+                    }, 600);
+                }
+            });
+
+            // Criar nova vela
+            const candleData = generateBullishCandle(marketState.candleIndex++);
+            const candle = document.createElement('div');
+            candle.className = `candle ${candleData.isBullish ? 'bullish' : 'bearish'}`;
+            
+            // Calcular dimensões
+            const bodyHeight = Math.max(8, Math.abs(candleData.close - candleData.open) / 20);
+            const wickTopHeight = Math.max(3, (candleData.high - Math.max(candleData.open, candleData.close)) / 20);
+            const wickBottomHeight = Math.max(3, (Math.min(candleData.open, candleData.close) - candleData.low) / 20);
+            
+            // Posicionar baseado no preço
+            const pricePosition = ((candleData.close - 60000) / 15000) * 100;
+            candle.style.bottom = Math.max(10, Math.min(85, pricePosition)) + '%';
+            
+            // Intensidade da animação baseada na força
+            candle.style.filter = candleData.isBullish ? 
+                `drop-shadow(0 0 ${5 + candleData.strength * 10}px rgba(14, 203, 129, ${0.3 + candleData.strength * 0.4}))` :
+                `drop-shadow(0 0 ${3 + candleData.strength * 5}px rgba(246, 70, 93, ${0.2 + candleData.strength * 0.3}))`;
+            
+            candle.innerHTML = `
+                <div class="candle-wick-top" style="height: ${wickTopHeight}px;"></div>
+                <div class="candle-body" style="height: ${bodyHeight}px;"></div>
+                <div class="candle-wick-bottom" style="height: ${wickBottomHeight}px;"></div>
+            `;
+            
+            candle.style.animationDelay = Math.random() * 0.3 + 's';
+            container.appendChild(candle);
+
+            // Atualizar preço atual
+            marketState.currentPrice = candleData.close;
+        }
+
+        // Criar barras de volume animadas
+        function createAnimatedVolume() {
+            const container = document.getElementById('volume');
+            
+            // Mover volumes existentes
+            const existingBars = Array.from(container.children);
+            existingBars.forEach((bar, index) => {
+                const currentTransform = bar.style.transform || '';
+                const currentX = parseFloat(currentTransform.match(/translateX\(([^)]+)\)/)?.[1] || 0);
+                bar.style.transform = `${currentTransform} translateX(${currentX - 12}px)`;
+                
+                if (currentX < -50 && existingBars.length > 80) {
+                    setTimeout(() => {
+                        if (bar.parentNode) bar.remove();
+                    }, 600);
+                }
+            });
+
+            // Nova barra de volume
+            const volume = Math.random() * 45 + 15;
+            const isGreen = Math.random() > 0.2;
+            
+            const bar = document.createElement('div');
+            bar.className = 'volume-bar';
+            bar.style.height = volume + 'px';
+            bar.style.background = isGreen ? 
+                `linear-gradient(180deg, rgba(14, 203, 129, 0.8) 0%, rgba(14, 203, 129, 0.4) 100%)` : 
+                `linear-gradient(180deg, rgba(246, 70, 93, 0.6) 0%, rgba(246, 70, 93, 0.3) 100%)`;
+            bar.style.animationDelay = Math.random() * 0.2 + 's';
+            
+            container.appendChild(bar);
+        }
+
+        // Atualizar labels de preço
+        function updatePriceLabels() {
+            const container = document.getElementById('price-sidebar');
+            container.innerHTML = '';
+
+            const basePrice = Math.floor(marketState.currentPrice / 1000) * 1000;
+            const levels = [8, 18, 28, 38, 48, 58, 68, 78, 88];
+
+            levels.forEach((level, index) => {
+                const label = document.createElement('div');
+                label.className = 'price-tag';
+                const price = basePrice + (index - 4) * 800;
+                label.textContent = '$' + price.toLocaleString('en-US', {maximumFractionDigits: 0});
+                label.style.top = level + '%';
+                
+                // Destacar preço atual
+                if (Math.abs(price - marketState.currentPrice) < 400) {
+                    label.classList.add('current');
+                }
+                
+                container.appendChild(label);
+            });
+        }
+
+        // Criar preços flutuantes
+        function createFloatingPrices() {
+            const container = document.getElementById('floating-data');
+            
+            const phrases = [
+                { text: () => '$' + Math.floor(marketState.currentPrice + Math.random() * 2000).toLocaleString(), color: 'yellow' },
+                { text: () => '+' + (Math.random() * 10 + 3).toFixed(1) + '%', color: 'green' },
+                { text: () => '🚀 TO THE MOON', color: 'green' },
+                { text: () => 'HODL', color: 'white' },
+                { text: () => 'NEW ATH!', color: 'yellow' },
+                { text: () => '+$' + Math.floor(Math.random() * 1000 + 500), color: 'green' },
+                { text: () => ['BTC', 'ETH', 'PUMP!'][Math.floor(Math.random() * 3)], color: 'white' }
+            ];
+
+            const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+            const float = document.createElement('div');
+            
+            float.className = `price-float ${phrase.color}`;
+            float.textContent = phrase.text();
+            float.style.left = Math.random() * 85 + 5 + '%';
+            float.style.fontSize = Math.random() > 0.6 ? '14px' : '12px';
+            float.style.fontWeight = Math.random() > 0.5 ? '800' : '700';
+            float.style.animationDuration = (Math.random() * 4 + 8) + 's';
+            
+            container.appendChild(float);
+
+            setTimeout(() => {
+                if (float.parentNode) float.remove();
+            }, 12000);
+        }
+
+        // Atualizar ticker
+        function updateTicker() {
+            const changePercent = Math.random() * 6 + 2;
+            marketState.priceChange = changePercent;
+            
+            document.getElementById('price-display').textContent = 
+                '$' + Math.floor(marketState.currentPrice).toLocaleString('en-US');
+            document.getElementById('change-display').textContent = 
+                '+' + changePercent.toFixed(2) + '%';
+            
+            // Efeito de pulse no ticker quando há grande mudança
+            if (changePercent > 8) {
+                document.getElementById('price-display').style.animation = 'price-pulse 1s ease-out';
+                setTimeout(() => {
+                    document.getElementById('price-display').style.animation = '';
+                }, 1000);
+            }
+        }
+
+        // Criar partículas de fundo
+        function createParticles() {
+            const container = document.getElementById('particles');
+            
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 15 + 's';
+                    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                    container.appendChild(particle);
+
+                    setTimeout(() => {
+                        if (particle.parentNode) particle.remove();
+                    }, 25000);
+                }, i * 1000);
+            }
+        }
+
+        // Inicialização
+        function initialize() {
+            console.log('🚀 Gráfico Binance inicializando...');
+            
+            // Criar velas iniciais
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    createAnimatedCandles();
+                    createAnimatedVolume();
+                }, i * 80);
+            }
+
+            updatePriceLabels();
+            createParticles();
+
+            // Loops de animação
+            setInterval(createAnimatedCandles, 1200);
+            setInterval(createAnimatedVolume, 1200);
+            setInterval(updatePriceLabels, 3000);
+            setInterval(createFloatingPrices, 800);
+            setInterval(updateTicker, 4000);
+            setInterval(createParticles, 20000);
+
+            console.log('✅ Gráfico ativo - Tendência de alta!');
+        }
+
+        // Iniciar quando carregar
+        document.addEventListener('DOMContentLoaded', initialize);
+    </script>
+</body>
+</html>

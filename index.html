@@ -1,51 +1,115 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RTX ONE: Seu Capital Crescendo com Segurança e Recompensa</title>
-    <meta name="description" content="Invista com rentabilidade real de 0,60% a.m. e receba mais por sua pontualidade. RTX ONE: transparência, segurança e foco no seu patrimônio.">
-    <meta name="robots" content="index,follow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTX ONE - A Evolução do Seu Dinheiro</title>
+    <meta name="description" content="Invista com rentabilidade real de 0,60% ao mês. Plano CAP 500 e GN com estrutura legal sólida.">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfQhQ9hg2Vqfva8msX9E6x8eQ8eXYQ0vZfGgYpS0v4z8WcJQZ8a+v4sQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="icon" href="assets/img/logo.png">
-    <!-- Open Graph -->
-    <meta property="og:title" content="RTX ONE: Seu Capital Crescendo com Segurança e Recompensa">
-    <meta property="og:description" content="Rentabilidade real de 0,60% a.m., resgate final de R$ 27.883,81 no Plano CAP 500.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.rtx-one.example/">
-    <meta property="og:image" content="assets/img/logo.png">
-    <!-- Analytics Placeholder: substitua pelo seu ID/Script oficial -->
-    <!-- Google tag (gtag.js) -->
-    <!--
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    -->
 </head>
 <body>
     <header class="site-header">
-        <div class="container header-inner">
-            <a href="#" class="brand" aria-label="RTX ONE">
-                <img src="assets/img/logo.png" alt="Logo RTX ONE" class="brand-logo" loading="lazy">
-                <span class="brand-name">RTX ONE</span>
-            </a>
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="brand">
+                    <span class="brand-name">RTX ONE</span>
+                </a>
+                <nav class="site-nav" id="primary-nav">
+                    <a href="#planos" class="nav-link">Planos</a>
+                    <a href="#faq" class="nav-link">FAQ</a>
+                    <a href="#contato" class="nav-link">Contato</a>
+                </nav>
+                <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                    <span class="nav-toggle-bar"></span>
+                </button>
+            </div>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero-section">
+        <!-- Hero Section com Gráfico Animado -->
+        <section class="hero-section" id="hero">
+            <!-- Container do gráfico -->
+            <div class="hero-chart-container">
+                <!-- Partículas de fundo -->
+                <div class="hero-particles" id="hero-particles"></div>
+                
+                <!-- Grid de trading -->
+                <div class="hero-trading-grid"></div>
+                
+                <!-- Linhas de preço -->
+                <div class="hero-price-levels">
+                    <div class="hero-price-line"></div>
+                    <div class="hero-price-line"></div>
+                    <div class="hero-price-line"></div>
+                    <div class="hero-price-line"></div>
+                    <div class="hero-price-line"></div>
+                    <div class="hero-price-line"></div>
+                    <div class="hero-price-line"></div>
+                    <div class="hero-price-line"></div>
+                    <div class="hero-price-line"></div>
+                </div>
+
+                <!-- Tendência de alta -->
+                <div class="hero-bullish-trend">
+                    <div class="hero-trend-line"></div>
+                </div>
+
+                <!-- Linha de preço atual -->
+                <div class="hero-current-price"></div>
+
+                <!-- Labels de preço -->
+                <div class="hero-price-sidebar" id="hero-price-sidebar"></div>
+
+                <!-- Área de candlesticks -->
+                <div class="hero-candlesticks-area" id="hero-candlesticks"></div>
+
+                <!-- Área de volume -->
+                <div class="hero-volume-area" id="hero-volume"></div>
+
+                <!-- Preços flutuantes -->
+                <div class="hero-floating-data" id="hero-floating-data"></div>
+            </div>
+
+            <!-- Ticker de mercado -->
+            <div class="hero-market-header">
+                <span class="hero-ticker-symbol">RTX/BRL</span>
+                <span class="hero-ticker-price" id="hero-price-display">R$ 27.883,81</span>
+                <span class="hero-ticker-change" id="hero-change-display">+0.60%</span>
+            </div>
+
+            <!-- Conteúdo hero -->
             <div class="container">
                 <div class="hero-content">
-                    <h1>RTX ONE: Seu Capital Crescendo com Segurança e Recompensa</h1>
-                    <p class="hero-subtitle">Invista com rentabilidade real de 0,60% ao mês e receba R$ 27.883,81 no final</p>
+                    <h1 class="hero-title">
+                        A <span class="highlight">Evolução</span> do Seu Dinheiro
+                    </h1>
+                    <p class="hero-subtitle">
+                        Invista com rentabilidade real de <strong>0,60% ao mês</strong><br>
+                        Estrutura legal sólida • Pagamento em dia = Recompensa total
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#planos" class="button button-primary">
+                            <i class="fas fa-rocket"></i>
+                            Começar a Investir
+                        </a>
+                        <a href="#faq" class="button button-outline">
+                            <i class="fas fa-info-circle"></i>
+                            Saiba Mais
+                        </a>
+                    </div>
                     <div class="hero-stats">
                         <div class="stat">
                             <i class="fas fa-percentage"></i>
@@ -53,574 +117,216 @@
                             <span class="stat-label">ao mês</span>
                         </div>
                         <div class="stat">
-                            <i class="fas fa-money-bill-wave"></i>
-                            <span class="stat-number">R$ 27.883,81</span>
-                            <span class="stat-label">resgate final</span>
+                            <i class="fas fa-shield-alt"></i>
+                            <span class="stat-number">SCP</span>
+                            <span class="stat-label">Legal</span>
                         </div>
                         <div class="stat">
-                            <i class="fas fa-calendar-alt"></i>
-                            <span class="stat-number">48x</span>
-                            <span class="stat-label">de R$ 500,00</span>
+                            <i class="fas fa-trophy"></i>
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Pontual</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Cadastro Section - Principal -->
-        <section class="section section-cadastro-main">
+        <!-- Escolha de Planos Section -->
+        <section class="section section-planos" id="planos">
             <div class="container">
                 <div class="section-header">
-                    <h2><i class="fas fa-user-plus"></i> Comece Seu Investimento Agora</h2>
-                    <p class="section-subtitle">Complete seu cadastro em 5 etapas simples e seguras</p>
+                    <h2>Escolha Seu Plano de Investimento</h2>
+                    <p>Uma alternativa inteligente que recompensa sua disciplina financeira</p>
                 </div>
-
-                <!-- Progress Indicator -->
-                <div class="progress-wrapper">
-                    <div class="progress-steps">
-                        <div class="progress-line" id="progressLine"></div>
-                        <div class="progress-step">
-                            <div class="step-number active" data-step="1">1</div>
-                            <div class="step-title active">Plano</div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
                         </div>
-                        <div class="progress-step">
-                            <div class="step-number" data-step="2">2</div>
-                            <div class="step-title">Pessoais</div>
-                        </div>
-                        <div class="progress-step">
-                            <div class="step-number" data-step="3">3</div>
-                            <div class="step-title">Endereço</div>
-                        </div>
-                        <div class="progress-step">
-                            <div class="step-number" data-step="4">4</div>
-                            <div class="step-title">Pagamento</div>
-                        </div>
-                        <div class="progress-step">
-                            <div class="step-number" data-step="5">5</div>
-                            <div class="step-title">Confirmação</div>
-                        </div>
+                        <h3>Rentabilidade Real</h3>
+                        <p>0,60% ao mês - rendimento fixo e transparente</p>
                     </div>
-                </div>
-
-                <!-- Form Container -->
-                <div class="form-container">
-                    <div class="form-content">
-                        <form id="rtxForm" novalidate>
-                            <!-- Etapa 1: Seleção do Plano -->
-                            <div class="form-step active" data-step="1">
-                                <div class="step-header">
-                                    <h3><i class="fas fa-chart-line"></i> Escolha seu Plano de Investimento</h3>
-                                    <p>Selecione o plano que melhor se adequa ao seu perfil</p>
-                                </div>
-
-                                <div class="plan-selection">
-                                    <div class="plan-option">
-                                        <input type="radio" id="planoCap500" name="plano" value="cap500" required>
-                                        <label for="planoCap500" class="plan-card">
-                                            <h4>Plano CAP 500</h4>
-                                            <div class="plan-features">
-                                                <div class="plan-feature">
-                                                    <i class="fas fa-calendar-alt"></i>
-                                                    <span>48 parcelas de R$ 500,00</span>
-                                                </div>
-                                                <div class="plan-feature">
-                                                    <i class="fas fa-money-bill-wave"></i>
-                                                    <span>Total: R$ 24.000,00</span>
-                                                </div>
-                                                <div class="plan-feature">
-                                                    <i class="fas fa-percentage"></i>
-                                                    <span>Rentabilidade: 0,60% ao mês</span>
-                                                </div>
-                                                <div class="plan-feature highlight">
-                                                    <i class="fas fa-trophy"></i>
-                                                    <span>Resgate: R$ 27.883,81</span>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="plan-option">
-                                        <input type="radio" id="planoGN" name="plano" value="gn" required>
-                                        <label for="planoGN" class="plan-card">
-                                            <h4>Plano GN</h4>
-                                            <div class="plan-features">
-                                                <div class="plan-feature">
-                                                    <i class="fas fa-handshake"></i>
-                                                    <span>Comissionamento interno</span>
-                                                </div>
-                                                <div class="plan-feature">
-                                                    <i class="fas fa-percentage"></i>
-                                                    <span>1ª e 2ª Parcela: 0.1%</span>
-                                                </div>
-                                                <div class="plan-feature">
-                                                    <i class="fas fa-infinity"></i>
-                                                    <span>Residual: 0.1%</span>
-                                                </div>
-                                                <div class="plan-feature highlight">
-                                                    <i class="fas fa-money-bill-wave"></i>
-                                                    <span>Total: R$ 2.400,00</span>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Etapa 2: Dados Pessoais (Mais curta) -->
-                            <div class="form-step" data-step="2">
-                                <div class="step-header">
-                                    <h3><i class="fas fa-user"></i> Dados Pessoais</h3>
-                                    <p>Informe seus dados básicos</p>
-                                </div>
-
-                                <div class="form-grid">
-                                    <div class="form-group full-width">
-                                        <label for="nome" class="required"><i class="fas fa-user"></i> Nome Completo</label>
-                                        <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="cpf" class="required"><i class="fas fa-id-card"></i> CPF</label>
-                                        <input type="text" id="cpf" name="cpf" inputmode="numeric" placeholder="000.000.000-00" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nascimento" class="required"><i class="fas fa-calendar"></i> Data de Nascimento</label>
-                                        <input type="date" id="nascimento" name="nascimento" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="estadoCivil" class="required"><i class="fas fa-heart"></i> Estado Civil</label>
-                                        <select id="estadoCivil" name="estadoCivil" required>
-                                            <option value="">Selecione</option>
-                                            <option value="solteiro">Solteiro(a)</option>
-                                            <option value="casado">Casado(a)</option>
-                                            <option value="divorciado">Divorciado(a)</option>
-                                            <option value="viuvo">Viúvo(a)</option>
-                                            <option value="uniao_estavel">União Estável</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="telefone" class="required"><i class="fas fa-phone"></i> Telefone</label>
-                                        <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email" class="required"><i class="fas fa-envelope"></i> E-mail</label>
-                                        <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Etapa 3: Endereço (Mais curta) -->
-                            <div class="form-step" data-step="3">
-                                <div class="step-header">
-                                    <h3><i class="fas fa-map-marker-alt"></i> Endereço Completo</h3>
-                                    <p>Informe seu endereço residencial</p>
-                                </div>
-
-                                <div class="form-grid">
-                                    <div class="form-group">
-                                        <label for="cep" class="required"><i class="fas fa-mail-bulk"></i> CEP</label>
-                                        <input type="text" id="cep" name="cep" inputmode="numeric" placeholder="00000-000" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="estado" class="required"><i class="fas fa-map"></i> Estado</label>
-                                        <select id="estado" name="estado" required>
-                                            <option value="">Selecione</option>
-                                            <option value="AC">Acre</option>
-                                            <option value="AL">Alagoas</option>
-                                            <option value="AP">Amapá</option>
-                                            <option value="AM">Amazonas</option>
-                                            <option value="BA">Bahia</option>
-                                            <option value="CE">Ceará</option>
-                                            <option value="DF">Distrito Federal</option>
-                                            <option value="ES">Espírito Santo</option>
-                                            <option value="GO">Goiás</option>
-                                            <option value="MA">Maranhão</option>
-                                            <option value="MT">Mato Grosso</option>
-                                            <option value="MS">Mato Grosso do Sul</option>
-                                            <option value="MG">Minas Gerais</option>
-                                            <option value="PA">Pará</option>
-                                            <option value="PB">Paraíba</option>
-                                            <option value="PR">Paraná</option>
-                                            <option value="PE">Pernambuco</option>
-                                            <option value="PI">Piauí</option>
-                                            <option value="RJ">Rio de Janeiro</option>
-                                            <option value="RN">Rio Grande do Norte</option>
-                                            <option value="RS">Rio Grande do Sul</option>
-                                            <option value="RO">Rondônia</option>
-                                            <option value="RR">Roraima</option>
-                                            <option value="SC">Santa Catarina</option>
-                                            <option value="SP">São Paulo</option>
-                                            <option value="SE">Sergipe</option>
-                                            <option value="TO">Tocantins</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="cidade" class="required"><i class="fas fa-city"></i> Cidade</label>
-                                        <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="bairro" class="required"><i class="fas fa-building"></i> Bairro</label>
-                                        <input type="text" id="bairro" name="bairro" placeholder="Bairro" required>
-                                    </div>
-                                    <div class="form-group full-width">
-                                        <label for="endereco" class="required"><i class="fas fa-road"></i> Endereço</label>
-                                        <input type="text" id="endereco" name="endereco" placeholder="Rua, número, complemento" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Etapa 4: Pagamento (Mais curta) -->
-                            <div class="form-step" data-step="4">
-                                <div class="step-header">
-                                    <h3><i class="fas fa-credit-card"></i> Forma de Pagamento</h3>
-                                    <p>Escolha como deseja pagar</p>
-                                </div>
-
-                                <div class="payment-methods">
-                                    <div class="payment-option">
-                                        <input type="radio" id="payDebitoCard" name="formaPagamento" value="debito_conta" required>
-                                        <label for="payDebitoCard" class="payment-card">
-                                            <i class="fas fa-university payment-icon"></i>
-                                            <div class="payment-info">
-                                                <h4>Débito em Conta</h4>
-                                                <p>Desconto automático</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="payment-option">
-                                        <input type="radio" id="payBoleto" name="formaPagamento" value="boleto" required>
-                                        <label for="payBoleto" class="payment-card">
-                                            <i class="fas fa-barcode payment-icon"></i>
-                                            <div class="payment-info">
-                                                <h4>Boleto Bancário</h4>
-                                                <p>Pagamento mensal</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="payment-option">
-                                        <input type="radio" id="payPix" name="formaPagamento" value="pix" required>
-                                        <label for="payPix" class="payment-card">
-                                            <i class="fas fa-qrcode payment-icon"></i>
-                                            <div class="payment-info">
-                                                <h4>PIX</h4>
-                                                <p>Instantâneo</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="payment-option">
-                                        <input type="radio" id="payCartao" name="formaPagamento" value="cartao" required>
-                                        <label for="payCartao" class="payment-card">
-                                            <i class="fas fa-credit-card payment-icon"></i>
-                                            <div class="payment-info">
-                                                <h4>Cartão de Crédito</h4>
-                                                <p>Parcelado</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <!-- Dados Bancários -->
-                                <div id="dadosBancarios" class="conditional-fields">
-                                    <h4><i class="fas fa-university"></i> Dados Bancários</h4>
-                                    <div class="form-grid">
-                                        <div class="form-group">
-                                            <label for="banco" class="required">Banco</label>
-                                            <select id="banco" name="banco">
-                                                <option value="">Selecione</option>
-                                                <option value="001">Banco do Brasil</option>
-                                                <option value="104">Caixa Econômica Federal</option>
-                                                <option value="341">Itaú</option>
-                                                <option value="033">Santander</option>
-                                                <option value="237">Bradesco</option>
-                                                <option value="260">Nu Pagamentos</option>
-                                                <option value="336">Banco C6</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="agencia" class="required">Agência</label>
-                                            <input type="text" id="agencia" name="agencia" placeholder="0000" inputmode="numeric">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="conta" class="required">Conta</label>
-                                            <input type="text" id="conta" name="conta" placeholder="00000-0" inputmode="numeric">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="tipoConta" class="required">Tipo de Conta</label>
-                                            <select id="tipoConta" name="tipoConta">
-                                                <option value="">Selecione</option>
-                                                <option value="corrente">Conta Corrente</option>
-                                                <option value="poupanca">Conta Poupança</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Dados do Cartão -->
-                                <div id="dadosCartao" class="conditional-fields">
-                                    <h4><i class="fas fa-credit-card"></i> Dados do Cartão</h4>
-                                    <div class="form-grid">
-                                        <div class="form-group full-width">
-                                            <label for="ccNumber" class="required">Número do Cartão</label>
-                                            <input type="text" id="ccNumber" name="ccNumber" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000">
-                                        </div>
-                                        <div class="form-group full-width">
-                                            <label for="ccName" class="required">Nome no Cartão</label>
-                                            <input type="text" id="ccName" name="ccName" autocomplete="cc-name" placeholder="Como no cartão">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ccExp" class="required">Validade</label>
-                                            <input type="text" id="ccExp" name="ccExp" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/AA">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ccCvv" class="required">CVV</label>
-                                            <input type="password" id="ccCvv" name="ccCvv" inputmode="numeric" autocomplete="cc-csc" placeholder="***">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="ccParc" class="required">Parcelas</label>
-                                            <select id="ccParc" name="ccParc">
-                                                <option value="1">1x de R$ 500,00</option>
-                                                <option value="2">2x de R$ 250,00</option>
-                                                <option value="5">5x de R$ 100,00</option>
-                                                <option value="10">10x de R$ 50,00</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Etapa 5: Confirmação (Mais curta) -->
-                            <div class="form-step" data-step="5">
-                                <div class="step-header">
-                                    <h3><i class="fas fa-check-circle"></i> Confirmação e Termos</h3>
-                                    <p>Revise seus dados e aceite os termos</p>
-                                </div>
-
-                                <div class="summary-box">
-                                    <h4><i class="fas fa-file-alt"></i> Resumo do Pedido</h4>
-                                    <div class="summary-list">
-                                        <div class="summary-item">
-                                            <span class="summary-label">Plano:</span>
-                                            <span class="summary-value" id="summaryPlan">-</span>
-                                        </div>
-                                        <div class="summary-item">
-                                            <span class="summary-label">Nome:</span>
-                                            <span class="summary-value" id="summaryName">-</span>
-                                        </div>
-                                        <div class="summary-item">
-                                            <span class="summary-label">E-mail:</span>
-                                            <span class="summary-value" id="summaryEmail">-</span>
-                                        </div>
-                                        <div class="summary-item">
-                                            <span class="summary-label">Pagamento:</span>
-                                            <span class="summary-value" id="summaryPayment">-</span>
-                                        </div>
-                                        <div class="summary-item highlight">
-                                            <span class="summary-label">Valor total:</span>
-                                            <span class="summary-value">R$ 24.000,00</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="checkbox-group">
-                                    <label class="checkbox">
-                                        <input type="checkbox" id="ppe" name="ppe">
-                                        <span class="checkbox-text">
-                                            <i class="fas fa-shield-alt"></i>
-                                            Declaro que <strong>NÃO</strong> sou Pessoa Politicamente Exposta (PPE)
-                                        </span>
-                                    </label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" id="residenciaFiscal" name="residenciaFiscal">
-                                        <span class="checkbox-text">
-                                            <i class="fas fa-flag"></i>
-                                            Declaro que sou residente fiscal no Brasil
-                                        </span>
-                                    </label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" id="termos" name="termos" required>
-                                        <span class="checkbox-text">
-                                            <i class="fas fa-file-contract"></i>
-                                            Concordo com os <a href="#" style="color: var(--color-primary);">termos e condições</a> e <a href="#" style="color: var(--color-primary);">política de privacidade</a> <span style="color: var(--color-danger);">*</span>
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Navigation -->
-                            <div class="form-navigation">
-                                <button type="button" id="prevBtn" class="button button-outline hidden">
-                                    <i class="fas fa-arrow-left"></i>
-                                    Anterior
-                                </button>
-                                <div class="nav-buttons">
-                                    <button type="button" id="nextBtn" class="button">
-                                        Próximo
-                                        <i class="fas fa-arrow-right"></i>
-                                    </button>
-                                    <button type="submit" id="submitBtn" class="button hidden">
-                                        <i class="fas fa-check"></i>
-                                        Finalizar Cadastro
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-target"></i>
+                        </div>
+                        <h3>Foco no Seu Futuro</h3>
+                        <p>Nosso objetivo é o crescimento do seu patrimônio</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3>Recompensa por Pontualidade</h3>
+                        <p>Quem paga em dia recebe 100% do valor com rentabilidade</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Estrutura Legal Sólida</h3>
+                        <p>Contrato de Sociedade em Conta de Participação (SCP)</p>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Problema Section -->
-        <section class="section section-problem">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Cansado de Títulos de Capitalização que Não Rendem?</h2>
-                    <p class="section-subtitle">A capitalização tradicional tem problemas que prejudicam seu crescimento financeiro</p>
-                </div>
-                <div class="problem-grid">
-                    <div class="problem-card">
-                        <div class="problem-icon"><i class="fas fa-chart-line-down"></i></div>
-                        <h3>Rendimento Baixo</h3>
-                        <p>TR a 0% - seu dinheiro não cresce</p>
-                    </div>
-                    <div class="problem-card">
-                        <div class="problem-icon"><i class="fas fa-money-bill-wave"></i></div>
-                        <h3>Custos Altos</h3>
-                        <p>Taxas administrativas que diminuem seu capital</p>
-                    </div>
-                    <div class="problem-card">
-                        <div class="problem-icon"><i class="fas fa-dice"></i></div>
-                        <h3>Foco na Sorte</h3>
-                        <p>Prioriza sorteios, não seu patrimônio</p>
-                    </div>
-                    <div class="problem-card">
-                        <div class="problem-icon"><i class="fas fa-lock"></i></div>
-                        <h3>Dinheiro Travado</h3>
-                        <p>Resgate antecipado com perdas significativas</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Solução Section -->
-        <section class="section section-solution">
-            <div class="container">
-                <div class="section-header">
-                    <h2>RTX ONE: A Evolução do Seu Dinheiro</h2>
-                    <p class="section-subtitle">Uma alternativa inteligente que recompensa sua disciplina financeira</p>
-                </div>
-                <div class="solution-grid">
-                    <div class="solution-content">
-                        <div class="solution-feature">
-                            <div class="feature-icon"><i class="fas fa-percentage"></i></div>
-                            <div class="feature-content">
-                                <h3>Rentabilidade Real</h3>
-                                <p>0,60% ao mês - rendimento fixo e transparente</p>
-                            </div>
-                        </div>
-                        <div class="solution-feature">
-                            <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
-                            <div class="feature-content">
-                                <h3>Foco no Seu Futuro</h3>
-                                <p>Nosso objetivo é o crescimento do seu patrimônio</p>
-                            </div>
-                        </div>
-                        <div class="solution-feature">
-                            <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
-                            <div class="feature-content">
-                                <h3>Recompensa por Pontualidade</h3>
-                                <p>Quem paga em dia recebe 100% do valor com rentabilidade</p>
-                            </div>
-                        </div>
-                        <div class="solution-feature">
-                            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                            <div class="feature-content">
-                                <h3>Estrutura Legal Sólida</h3>
-                                <p>Contrato de Sociedade em Conta de Participação (SCP)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="solution-visual">
-                        <div class="plan-card-highlight">
+                
+                <div class="planos-container">
+                    <div class="plano-card featured">
+                        <div class="plano-header">
+                            <div class="plano-badge">Recomendado</div>
                             <h3>Plano CAP 500</h3>
-                            <div class="plan-details">
-                                <div class="plan-item">
-                                    <span class="plan-label">Aporte:</span>
-                                    <span class="plan-value">48x de R$ 500,00</span>
+                        </div>
+                        <div class="plano-content">
+                            <div class="plano-detail">
+                                <span class="label">Aporte:</span>
+                                <span class="value">48x de R$ 500,00</span>
+                            </div>
+                            <div class="plano-detail">
+                                <span class="label">Total investido:</span>
+                                <span class="value">R$ 24.000,00</span>
+                            </div>
+                            <div class="plano-detail">
+                                <span class="label">Rentabilidade:</span>
+                                <span class="value">0,60% ao mês</span>
+                            </div>
+                            <div class="plano-detail highlight">
+                                <span class="label">Resgate final:</span>
+                                <span class="value">R$ 27.883,81</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-large">
+                            <i class="fas fa-rocket"></i>
+                            Investir no CAP 500
+                        </button>
+                    </div>
+                    
+                    <div class="plano-card">
+                        <div class="plano-header">
+                            <h3>Plano GN</h3>
+                        </div>
+                        <div class="plano-content">
+                            <div class="plano-detail">
+                                <span class="label">Aporte:</span>
+                                <span class="value">Valor flexível</span>
+                            </div>
+                            <div class="plano-detail">
+                                <span class="label">Rentabilidade:</span>
+                                <span class="value">0,60% ao mês</span>
+                            </div>
+                            <div class="plano-detail">
+                                <span class="label">Contrato:</span>
+                                <span class="value">Sociedade SCP</span>
+                            </div>
+                            <div class="plano-detail">
+                                <span class="label">Flexibilidade:</span>
+                                <span class="value">Adequado ao seu perfil</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-large">
+                            <i class="fas fa-info-circle"></i>
+                            Saiba Mais sobre GN
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perguntas Frequentes Section -->
+        <section class="section section-faq" id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <h2><i class="fas fa-question-circle"></i> Perguntas Frequentes</h2>
+                    <p>Tire suas dúvidas sobre os planos RTX ONE</p>
+                </div>
+                
+                <div class="faq-swiper-container">
+                    <div class="faq-swiper-wrapper">
+                        <div class="faq-slide active">
+                            <div class="faq-card">
+                                <div class="faq-question">
+                                    <i class="fas fa-question"></i>
+                                    <h3>O que é o Plano CAP 500?</h3>
                                 </div>
-                                <div class="plan-item">
-                                    <span class="plan-label">Total investido:</span>
-                                    <span class="plan-value">R$ 24.000,00</span>
+                                <div class="faq-answer">
+                                    <p>O Plano CAP 500 é um investimento estruturado em 48 parcelas de R$ 500,00, totalizando R$ 24.000,00. Com rentabilidade de 0,60% ao mês, você recebe R$ 27.883,81 no final do período.</p>
                                 </div>
-                                <div class="plan-item">
-                                    <span class="plan-label">Rentabilidade:</span>
-                                    <span class="plan-value">0,60% ao mês</span>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-slide">
+                            <div class="faq-card">
+                                <div class="faq-question">
+                                    <i class="fas fa-question"></i>
+                                    <h3>Como funciona o Plano GN?</h3>
                                 </div>
-                                <div class="plan-item highlight">
-                                    <span class="plan-label">Resgate final:</span>
-                                    <span class="plan-value">R$ 27.883,81</span>
+                                <div class="faq-answer">
+                                    <p>O Plano GN oferece maior flexibilidade com valores personalizados. Mantém a mesma rentabilidade de 0,60% ao mês e é adequado para diferentes perfis de investidor.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-slide">
+                            <div class="faq-card">
+                                <div class="faq-question">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <h3>É seguro investir no RTX ONE?</h3>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Sim, utilizamos contrato de Sociedade em Conta de Participação (SCP), que é uma estrutura legal sólida e transparente, garantindo a segurança do seu investimento.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-slide">
+                            <div class="faq-card">
+                                <div class="faq-question">
+                                    <i class="fas fa-percentage"></i>
+                                    <h3>A rentabilidade é garantida?</h3>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Sim, a rentabilidade de 0,60% ao mês é fixa e transparente. Quem paga em dia recebe 100% do valor com rentabilidade, sem surpresas.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-slide">
+                            <div class="faq-card">
+                                <div class="faq-question">
+                                    <i class="fas fa-calendar"></i>
+                                    <h3>Posso resgatar antes do prazo?</h3>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>O plano é estruturado para o prazo completo de 48 meses para máxima rentabilidade. Consulte nossa equipe para entender as condições de resgate antecipado.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="faq-slide">
+                            <div class="faq-card">
+                                <div class="faq-question">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <h3>Como é feito o pagamento?</h3>
+                                </div>
+                                <div class="faq-answer">
+                                    <p>Oferecemos múltiplas formas de pagamento: débito em conta, boleto bancário, PIX e cartão de crédito. Você escolhe a forma mais conveniente para você.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Como Funciona Section -->
-        <section class="section section-how" id="como-funciona">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Como Funciona</h2>
-                    <p class="section-subtitle">Simples, transparente e recompensador</p>
-                </div>
-                <div class="how-steps">
-                    <div class="how-step">
-                        <div class="step-number">1</div>
-                        <h3>Aporte</h3>
-                        <p>Contrate seu plano com parcelas fixas de R$ 500,00</p>
-                    </div>
-                    <div class="how-step">
-                        <div class="step-number">2</div>
-                        <h3>Crescimento</h3>
-                        <p>Seu capital rende 0,60% ao mês de forma garantida</p>
-                    </div>
-                    <div class="how-step">
-                        <div class="step-number">3</div>
-                        <h3>Recompensa</h3>
-                        <p>Pague em dia e garanta seu resgate final com bônus</p>
-                    </div>
-                    <div class="how-step">
-                        <div class="step-number">4</div>
-                        <h3>Resgate</h3>
-                        <p>Receba R$ 27.883,81 ao final do contrato</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- FAQ Section -->
-        <section class="section section-faq">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Perguntas Frequentes</h2>
-                    <p class="section-subtitle">Tire suas dúvidas sobre o RTX ONE</p>
-                </div>
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h3>O que acontece se eu atrasar uma parcela?</h3>
-                        <p>O bônus por pontualidade pode ser comprometido. Recomendamos manter as parcelas em dia para garantir o resgate com a rentabilidade prometida.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Qual a multa por desistência?</h3>
-                        <p>Há possibilidade de perdas em resgates antecipados, conforme contrato. Consulte as condições específicas do seu plano.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Como é garantido o meu capital?</h3>
-                        <p>O plano é estruturado por meio de um contrato de Sociedade em Conta de Participação (SCP), conferindo segurança jurídica e governança ao investimento.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Posso escolher outro valor de parcela?</h3>
-                        <p>Atualmente oferecemos o Plano CAP 500 com parcelas de R$ 500,00. Entre em contato para conhecer outras opções disponíveis.</p>
+                    
+                    <div class="faq-navigation">
+                        <button class="faq-nav-btn prev" id="faqPrev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="faq-pagination">
+                            <span class="faq-current">1</span> / <span class="faq-total">6</span>
+                        </div>
+                        <button class="faq-nav-btn next" id="faqNext">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -631,52 +337,32 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <a href="#" class="brand">
-                        <img src="assets/img/logo.png" alt="Logo RTX ONE" class="brand-logo" loading="lazy">
+                    <div class="brand">
                         <span class="brand-name">RTX ONE</span>
-                    </a>
-                    <p class="footer-desc">Seu capital crescendo com segurança e recompensa. Investimento transparente e rentável.</p>
+                    </div>
+                    <p class="footer-desc">A evolução do seu dinheiro com segurança e rentabilidade real.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook" class="social-link">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" aria-label="Instagram" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" aria-label="LinkedIn" class="social-link">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" aria-label="WhatsApp" class="social-link">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4>Produto</h4>
+                        <h4>Investimentos</h4>
                         <ul>
-                            <li><a href="#resumo">Plano CAP 500</a></li>
-                            <li><a href="#faq">Como Funciona</a></li>
-                            <li><a href="#checkout-form">Simular Investimento</a></li>
+                            <li><a href="#planos">Plano CAP 500</a></li>
+                            <li><a href="#planos">Plano GN</a></li>
+                            <li><a href="#faq">FAQ</a></li>
                         </ul>
                     </div>
-                    
                     <div class="footer-column">
                         <h4>Suporte</h4>
                         <ul>
-                            <li><a href="#faq">Perguntas Frequentes</a></li>
-                            <li><a href="mailto:suporte@rtx-sec.com">suporte@rtx-sec.com</a></li>
-                            <li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h4>Legal</h4>
-                        <ul>
-                            <li><a href="/termos">Termos de Uso</a></li>
-                            <li><a href="/privacidade">Política de Privacidade</a></li>
-                            <li><a href="/regulamento">Regulamento</a></li>
+                            <li><a href="#contato">Contato</a></li>
+                            <li><a href="#">Central de Ajuda</a></li>
+                            <li><a href="#">Documentos</a></li>
                         </ul>
                     </div>
                 </div>
@@ -684,22 +370,18 @@
             
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
-                    <p class="copyright">© <span id="year"></span> RTX ONE. Todos os direitos reservados.</p>
+                    <p class="copyright">&copy; <span id="year">2024</span> RTX ONE. Todos os direitos reservados.</p>
                     <div class="footer-bottom-links">
-                        <span>CNPJ: 00.000.000/0001-00</span>
+                        <a href="#">Termos de Uso</a>
                         <span>•</span>
-                        <span>Registro CVM: 00000-0</span>
+                        <a href="#">Política de Privacidade</a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="assets/js/script.js"></script>
-    <noscript>
-        <img src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" alt="" style="display:none;" />
-    </noscript>
 </body>
 </html>
-
-
